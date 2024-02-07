@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "1. Setup-Chat assets L4 __ photoPlaceholder.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "1. Setup-Chat assets L4 __ photoPlaceholder2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "1. Setup-Chat assets L4 __ photoPlaceholder3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
