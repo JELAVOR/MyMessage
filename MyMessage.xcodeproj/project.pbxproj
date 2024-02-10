@@ -13,6 +13,7 @@
 		2A150BCE2B7139D300AC8C4C /* FirebaseUserListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A150BCD2B7139D300AC8C4C /* FirebaseUserListener.swift */; };
 		2AB65C7E2B735A460057B8A3 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB65C7D2B735A460057B8A3 /* ProfileTableViewController.swift */; };
 		2ABDDB362B6EA25400A0DABF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2ABDDB352B6EA25400A0DABF /* GoogleService-Info.plist */; };
+		2AE263F02B73F8700084B8B2 /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE263EF2B73F8700084B8B2 /* EditProfileTableViewController.swift */; };
 		2AE7011D2B6E229D00033992 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE7011C2B6E229D00033992 /* AppDelegate.swift */; };
 		2AE7011F2B6E229D00033992 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE7011E2B6E229D00033992 /* SceneDelegate.swift */; };
 		2AE701212B6E229D00033992 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE701202B6E229D00033992 /* LoginViewController.swift */; };
@@ -32,6 +33,7 @@
 		2A150BCD2B7139D300AC8C4C /* FirebaseUserListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserListener.swift; sourceTree = "<group>"; };
 		2AB65C7D2B735A460057B8A3 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		2ABDDB352B6EA25400A0DABF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2AE263EF2B73F8700084B8B2 /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
 		2AE701192B6E229D00033992 /* MyMessage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMessage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AE7011C2B6E229D00033992 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AE7011E2B6E229D00033992 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				2AE7011E2B6E229D00033992 /* SceneDelegate.swift */,
 				2AE701202B6E229D00033992 /* LoginViewController.swift */,
 				2AB65C7D2B735A460057B8A3 /* ProfileTableViewController.swift */,
+				2AE263EF2B73F8700084B8B2 /* EditProfileTableViewController.swift */,
 				2A150BCC2B71397800AC8C4C /* FirebaseHelpers */,
 				2A150BC52B71216400AC8C4C /* Model */,
 				2AC3FFA42B7270340072F5EE /* Helpers */,
@@ -255,6 +258,7 @@
 				2AB65C7E2B735A460057B8A3 /* ProfileTableViewController.swift in Sources */,
 				2AE701212B6E229D00033992 /* LoginViewController.swift in Sources */,
 				2AE701272B6E229D00033992 /* MyMessage.xcdatamodeld in Sources */,
+				2AE263F02B73F8700084B8B2 /* EditProfileTableViewController.swift in Sources */,
 				2AE7011D2B6E229D00033992 /* AppDelegate.swift in Sources */,
 				2A150BCE2B7139D300AC8C4C /* FirebaseUserListener.swift in Sources */,
 				2A150BC72B71217700AC8C4C /* User.swift in Sources */,
@@ -338,7 +342,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.5;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -395,7 +399,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.5;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -422,6 +426,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -452,6 +457,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

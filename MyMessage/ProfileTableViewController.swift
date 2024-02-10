@@ -16,6 +16,7 @@ class ProfileTableViewController: UITableViewController {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var avatarImageView: UIImageView!
     
+    @IBOutlet weak var updateVersionLabel: UILabel!
     
 //MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -30,6 +31,26 @@ class ProfileTableViewController: UITableViewController {
         
         
     }
+    
+//MARK: - TableView Delegate
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor(named: "TableViewBackgroundColor")
+        return headerView
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return section == 0 ? 0.0 : 10.0
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.section == 0 && indexPath.row == 0 {
+            performSegue(withIdentifier: "profileToEditAvatar", sender: self)
+        }
+    }
+    
+    
 //MARK: - IBACtions
     
     
@@ -42,7 +63,17 @@ class ProfileTableViewController: UITableViewController {
     }
     
     @IBAction func logOutButtonPressed(_ sender: Any) {
-        print("logout")
+        FirebaseUserListener.shared.logOutCurrentUser { (error) in
+            if error == nil {
+                let loginView = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "loginView")
+                
+                DispatchQueue.main.async {
+                    loginView.modalPresentationStyle = .fullScreen
+                    self.present(loginView, animated: true, completion: nil)
+                }
+                
+            }
+        }
     }
     
     
@@ -57,7 +88,7 @@ class ProfileTableViewController: UITableViewController {
         if let user = User.currentUser {
             usernameLabel.text = user.username
             statusLabel.text = user.status
-            
+            updateVersionLabel.text = "App version \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String ?? "")"
             if user.avatarLink != "" {
                 //download and set avatar image
             }
