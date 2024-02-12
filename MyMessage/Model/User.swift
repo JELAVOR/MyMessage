@@ -42,13 +42,12 @@ struct User: Codable, Equatable {
     
 }
 
-
 func saveUserLocally(_ user: User) {
     let encoder = JSONEncoder()
     
     do {
         
-       let data = try encoder.encode(user)
+        let data = try encoder.encode(user)
         UserDefaults.standard.set(data, forKey: KCURRENTUSER)
         
     } catch {

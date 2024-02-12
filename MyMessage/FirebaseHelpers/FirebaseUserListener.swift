@@ -8,62 +8,56 @@
 import Foundation
 import Firebase
 
-
 class FirebaseUserListener {
     static let shared = FirebaseUserListener()
     private init () {}
     
-//MARK: - Login
+    //MARK: - Login
     
     func loginUserWithEmail(email:String, password:String, completion: @escaping(_ error: Error? , _ isEmailVerified: Bool) -> Void) {
-    
+        
         Auth.auth().signIn(withEmail: email, password: password) { (AuthDataResult, error) in
             
             if error == nil && AuthDataResult!.user.isEmailVerified {
                 
                 FirebaseUserListener.shared.downloadUserFromFirebase(userId: AuthDataResult!.user.uid, email: email)
                 
-                
                 completion (error, true)
-
                 
             } else {
                 print("Email is not Verified")
                 completion (error, false)
                 
-                }
             }
         }
+    }
     
-    
-    
-//MARK: - Register
-
+    //MARK: - Register
     
     func registerUserWith(email: String, password: String, completion: @escaping (_ error: Error?) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { (AuthDataResult, error) in
             completion(error)
             if error == nil {
-
+                
                 //send verification email
                 
                 AuthDataResult!.user.sendEmailVerification { (error) in
                     print("auth enail sent with error:",error?.localizedDescription)
                 }
-
+                
                 //create user and save it
                 if AuthDataResult?.user != nil {
                     let user = User(id: AuthDataResult!.user.uid, username: email, email: email, pushId: "", avatarLink: "", status: "Hey there I'm using MyMessage!")
-
+                    
                     saveUserLocally(user)
                     self.saveUserToFireStore(user)
                 }
-
+                
             }
         }
     }
     
-//MARK: - Resend link methods
+    //MARK: - Resend link methods
     
     func resendVerificationEmail(email: String, completion: @escaping(_ error: Error?) -> Void
     ) {
@@ -80,30 +74,24 @@ class FirebaseUserListener {
         }
     }
     
-    
     func logOutCurrentUser(completion: @escaping(_ error: Error?) -> Void) {
         
         
         do {
             try Auth.auth().signOut()
-
+            
             userDefaults.removeObject(forKey:KCURRENTUSER)
             userDefaults.synchronize()
             
             completion(nil)
-
+            
         } catch let error as NSError {
             completion(error)
         }
-        
-       
     }
     
+    //MARK: - Save users
     
-    
-    
-//MARK: - Save users
-
     
     func saveUserToFireStore(_ user: User) {
         do {
@@ -113,9 +101,7 @@ class FirebaseUserListener {
         }
     }
     
-    
-    
-//MARK: - Download User Info
+    //MARK: - Download User Info
     
     func downloadUserFromFirebase(userId: String, email: String? = nil) {
         FirebaseReference(.User).document(userId).getDocument { (querySnapshot, error ) in
@@ -127,27 +113,20 @@ class FirebaseUserListener {
                 try? document.data(as: User.self)
             }
             
-            
             switch result {
-              
-                
                 
             case .success(let userObject):
                 if let user = userObject {
-                saveUserLocally(user)
+                    saveUserLocally(user)
                 }else {
                     print("Document does not exist")
                 }
-                
-                
                 
             case .failure(let error):
                 print("Error decoding user", error)
             }
         }
     }
-    
-    
 }
 
 

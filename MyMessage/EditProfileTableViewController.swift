@@ -10,47 +10,40 @@ import Gallery
 import ProgressHUD
 
 class EditProfileTableViewController: UITableViewController {
-
     
-//MARK: - IBOutlets
-    
+    //MARK: - IBOutlets
     
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var statusLabel: UILabel!
     
- 
     
-//MARK: - Vars
+    //MARK: - Vars
     
     var gallery: GalleryController!
     
- //MARK: - ViewLifeCycle
-
+    //MARK: - ViewLifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableView.tableFooterView = UIView()
         configureTextField()
     }
-    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         showUserInfo()
     }
     
-  
-    
-//MARK: - TableView Delegate
-    
+    //MARK: - TableView Delegate
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         headerView.backgroundColor = UIColor(named: "TableViewBackgroundColor")
         return headerView
     }
-
+    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return section == 0 ? 0.0 : 30.0
     }
@@ -59,23 +52,13 @@ class EditProfileTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    
-    
- //MARK: - IBActions
-    
+    //MARK: - IBActions
     
     @IBAction func editButtonPressed(_ sender: Any) {
-        
-//        
         showImageGallery()
-        
     }
     
-    
-    
-    
-    
-//MARK: - Update UI
+    //MARK: - Update UI
     
     private func showUserInfo() {
         if let user = User.currentUser {
@@ -83,26 +66,25 @@ class EditProfileTableViewController: UITableViewController {
             statusLabel.text = user.status
             
             if user.avatarLink != "" {
-                
+                FileStorage.downloadImage(imageUrl: user.avatarLink) { (avatarImage) in
+                    self.avatarImageView.image = avatarImage?.circleMasked
+                }
             }
         }
     }
     
-//MARK: - Configure
+    //MARK: - Configure
     
     private func configureTextField() {
         usernameTextField.delegate = self
         usernameTextField.clearButtonMode = .whileEditing
     }
-  
     
-//MARK: - Gallery
-    
+    //MARK: - Gallery
     
     private func showImageGallery() {
         self.gallery = GalleryController()
         self.gallery.delegate = self
-    
         
         Config.tabsToShow = [.imageTab, .cameraTab]
         Config.Camera.imageLimit = 1
@@ -112,22 +94,21 @@ class EditProfileTableViewController: UITableViewController {
         
     }
     
+    //MARK: - Upload Images
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    private func uploadAvatarImage(_ image: UIImage!){
+        
+        let fileDirectory = "Avatars/" + "_\(User.currentId)" + ".jpeg"
+        
+        FileStorage.uploadImage(image, directory: fileDirectory) { (avatarLink) in
+            if var user = User.currentUser {
+                user.avatarLink = avatarLink ?? ""
+                saveUserLocally(user)
+                FirebaseUserListener.shared.saveUserToFireStore(user)
+            }
+            FileStorage.saveFileLocally(fileData: image.jpegData(compressionQuality: 1.0)! as NSData, fileName: User.currentId)
+        }
+    }
 }
 
 extension EditProfileTableViewController : UITextFieldDelegate {
@@ -140,31 +121,27 @@ extension EditProfileTableViewController : UITextFieldDelegate {
                     FirebaseUserListener.shared.saveUserToFireStore(user)
                 }
             }
-            
-            
-            
             textField.resignFirstResponder()
             return false
         }
-        
         return true
     }
 }
-
 
 extension EditProfileTableViewController : GalleryControllerDelegate {
     func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {
         if images.count > 0 {
             images.first!.resolve { (avatarImage) in
                 if avatarImage != nil {
-                    self.avatarImageView.image = avatarImage
+                    self.uploadAvatarImage(avatarImage)
+                    self.avatarImageView.image = avatarImage?.circleMasked
                 } else {
                     ProgressHUD.error("Couldnt select image!")
                 }
             }
         }
         controller.dismiss(animated: true, completion: nil)
-
+        
     }
     func galleryController(_ controller: GalleryController, didSelectVideo video: Video) {
         controller.dismiss(animated: true, completion: nil)

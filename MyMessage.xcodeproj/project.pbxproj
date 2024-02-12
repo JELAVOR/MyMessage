@@ -13,6 +13,9 @@
 		2A150BCE2B7139D300AC8C4C /* FirebaseUserListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A150BCD2B7139D300AC8C4C /* FirebaseUserListener.swift */; };
 		2AB65C7E2B735A460057B8A3 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB65C7D2B735A460057B8A3 /* ProfileTableViewController.swift */; };
 		2ABDDB362B6EA25400A0DABF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2ABDDB352B6EA25400A0DABF /* GoogleService-Info.plist */; };
+		2AC8134D2B7A1049009B9F86 /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC8134C2B7A1049009B9F86 /* FileStorage.swift */; };
+		2AC8134F2B7A3FC3009B9F86 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC8134E2B7A3FC3009B9F86 /* GlobalFunctions.swift */; };
+		2AC813512B7A79A9009B9F86 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC813502B7A79A9009B9F86 /* Extentions.swift */; };
 		2AE263F02B73F8700084B8B2 /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE263EF2B73F8700084B8B2 /* EditProfileTableViewController.swift */; };
 		2AE7011D2B6E229D00033992 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE7011C2B6E229D00033992 /* AppDelegate.swift */; };
 		2AE7011F2B6E229D00033992 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE7011E2B6E229D00033992 /* SceneDelegate.swift */; };
@@ -33,6 +36,9 @@
 		2A150BCD2B7139D300AC8C4C /* FirebaseUserListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserListener.swift; sourceTree = "<group>"; };
 		2AB65C7D2B735A460057B8A3 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		2ABDDB352B6EA25400A0DABF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2AC8134C2B7A1049009B9F86 /* FileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
+		2AC8134E2B7A3FC3009B9F86 /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
+		2AC813502B7A79A9009B9F86 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		2AE263EF2B73F8700084B8B2 /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
 		2AE701192B6E229D00033992 /* MyMessage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMessage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AE7011C2B6E229D00033992 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +77,7 @@
 			children = (
 				2A150BCA2B7137D300AC8C4C /* FCollectionReference.swift */,
 				2A150BCD2B7139D300AC8C4C /* FirebaseUserListener.swift */,
+				2AC8134C2B7A1049009B9F86 /* FileStorage.swift */,
 			);
 			path = FirebaseHelpers;
 			sourceTree = "<group>";
@@ -79,6 +86,8 @@
 			isa = PBXGroup;
 			children = (
 				2A150BC82B7124F800AC8C4C /* Constants.swift */,
+				2AC8134E2B7A3FC3009B9F86 /* GlobalFunctions.swift */,
+				2AC813502B7A79A9009B9F86 /* Extentions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -256,11 +265,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AB65C7E2B735A460057B8A3 /* ProfileTableViewController.swift in Sources */,
+				2AC8134D2B7A1049009B9F86 /* FileStorage.swift in Sources */,
+				2AC8134F2B7A3FC3009B9F86 /* GlobalFunctions.swift in Sources */,
 				2AE701212B6E229D00033992 /* LoginViewController.swift in Sources */,
 				2AE701272B6E229D00033992 /* MyMessage.xcdatamodeld in Sources */,
 				2AE263F02B73F8700084B8B2 /* EditProfileTableViewController.swift in Sources */,
 				2AE7011D2B6E229D00033992 /* AppDelegate.swift in Sources */,
 				2A150BCE2B7139D300AC8C4C /* FirebaseUserListener.swift in Sources */,
+				2AC813512B7A79A9009B9F86 /* Extentions.swift in Sources */,
 				2A150BC72B71217700AC8C4C /* User.swift in Sources */,
 				2AE7011F2B6E229D00033992 /* SceneDelegate.swift in Sources */,
 				2A150BCB2B7137D300AC8C4C /* FCollectionReference.swift in Sources */,

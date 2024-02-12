@@ -8,17 +8,15 @@
 import UIKit
 
 class ProfileTableViewController: UITableViewController {
-
-//MARK: -IBOutlets
     
+    //MARK: -IBOutlets
     
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var avatarImageView: UIImageView!
-    
     @IBOutlet weak var updateVersionLabel: UILabel!
     
-//MARK: - View Life Cycle
+    //MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
@@ -27,12 +25,9 @@ class ProfileTableViewController: UITableViewController {
         super.viewDidAppear(animated)
         showUserInfo()
         
-        
-        
-        
     }
     
-//MARK: - TableView Delegate
+    //MARK: - TableView Delegate
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         headerView.backgroundColor = UIColor(named: "TableViewBackgroundColor")
@@ -50,9 +45,7 @@ class ProfileTableViewController: UITableViewController {
         }
     }
     
-    
-//MARK: - IBACtions
-    
+    //MARK: - IBACtions
     
     @IBAction func tellAFriendButtonPressed(_ sender: Any) {
         print("tell a friend")
@@ -76,27 +69,20 @@ class ProfileTableViewController: UITableViewController {
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
-//MARK: - UpdateUI
+    //MARK: - UpdateUI
     private func showUserInfo() {
         if let user = User.currentUser {
             usernameLabel.text = user.username
             statusLabel.text = user.status
             updateVersionLabel.text = "App version \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String ?? "")"
             if user.avatarLink != "" {
-                //download and set avatar image
+
+                FileStorage.downloadImage(imageUrl: user.avatarLink) { (avatarImage) in
+                    self.avatarImageView.image = avatarImage?.circleMasked
+                }
+
             }
-                
+            
         }
     }
-    
-    
-    
-    
 }
