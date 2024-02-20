@@ -12,10 +12,14 @@ import CoreData
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var firstRun: Bool?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
         FirebaseApp.configure()
+        firstRunCheck()
+        
+        
         return true
     }
 
@@ -76,7 +80,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
-    }
 
+    }
+    
+//MARK: - FirstRun
+
+            private func firstRunCheck() {
+                firstRun = userDefaults.bool(forKey: KFIRSTRUN)
+                
+                if !firstRun! {
+                    let status = Status.array.map{$0.rawValue}
+                    
+                    userDefaults.set(status, forKey: KSTATUS)
+                    userDefaults.set(true, forKey: KFIRSTRUN)
+                    
+                    userDefaults.synchronize()
+                }
+            }
 }
 
